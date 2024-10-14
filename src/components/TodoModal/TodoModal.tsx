@@ -8,10 +8,10 @@ import { Loader } from '../Loader';
 
 type Props = {
   todo: Todo;
-  closeModel: () => void;
+  onCloseModel: () => void;
 };
 
-export const TodoModal: React.FC<Props> = ({ todo, closeModel }) => {
+export const TodoModal: React.FC<Props> = ({ todo, onCloseModel }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -43,7 +43,7 @@ export const TodoModal: React.FC<Props> = ({ todo, closeModel }) => {
               type="button"
               className="delete"
               data-cy="modal-close"
-              onClick={closeModel}
+              onClick={onCloseModel}
             />
           </header>
 
@@ -64,7 +64,7 @@ export const TodoModal: React.FC<Props> = ({ todo, closeModel }) => {
 
               {' by '}
 
-              <a href="mailto:Sincere@april.biz">{user?.name}</a>
+              <a href={`mailto:${user?.email}`}>{user?.name}</a>
             </p>
           </div>
         </div>

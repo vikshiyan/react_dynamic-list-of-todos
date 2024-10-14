@@ -33,7 +33,13 @@ export const TodoList: React.FC<Props> = ({ todos }) => {
 
         <tbody>
           {todos.map(todo => (
-            <tr key={todo.id} data-cy="todo" className="">
+            <tr
+              key={todo.id}
+              data-cy="todo"
+              className={cn({
+                'has-background-info-light': todo.id === openedTodo?.id,
+              })}
+            >
               <td className="is-vcentered">{todo.id}</td>
               <td className="is-vcentered">
                 {todo.completed && (
@@ -76,7 +82,7 @@ export const TodoList: React.FC<Props> = ({ todos }) => {
       </table>
 
       {openedTodo && (
-        <TodoModal todo={openedTodo} closeModel={() => setOpenedTodo(null)} />
+        <TodoModal todo={openedTodo} onCloseModel={() => setOpenedTodo(null)} />
       )}
     </>
   );
